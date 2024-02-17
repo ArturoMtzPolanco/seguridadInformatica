@@ -5,6 +5,6 @@ namespace ApplicationCore.Interfaces
 {
     public interface IDashboardService
     {
-
+        Task<Response<object>> GetData();
     }
 }

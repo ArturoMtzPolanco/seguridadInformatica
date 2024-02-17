@@ -1,9 +1,11 @@
 ﻿using ApplicationCore.DTOs;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Wrappers;
+using AutoMapper;
 using Dapper;
 using Infraestructure.Persistence;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructure.Services
 {
@@ -16,7 +18,15 @@ namespace Infraestructure.Services
         {
             _dbContext = dbContext;
             _currentUserService = currentUserService;
+            
         }
 
+        public async Task<Response<object>> GetData()
+        {
+            object list = new object();
+            list = await _dbContext.users.ToListAsync();
+
+            return new Response<object>(list);
+        }
     }
 }

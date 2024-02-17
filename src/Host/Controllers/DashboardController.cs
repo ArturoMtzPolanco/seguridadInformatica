@@ -1,6 +1,10 @@
 ﻿using ApplicationCore.Interfaces;
+using ApplicationCore.Wrappers;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace Host.Controllers
 {
@@ -9,17 +13,20 @@ namespace Host.Controllers
     public class DashboardController : ControllerBase
     {
         private readonly IDashboardService _service;
-        public DashboardController(IDashboardService service)
+        private readonly IMediator _mediator;
+        public DashboardController(IDashboardService service, IMediator mediator)
         {
             _service = service;
+            _mediator = mediator;
         }
 
-        [HttpGet()]
-        [Authorize]
-        public async Task<IActionResult> GastoPendienteArea()
+        [Route("getData")]
+        [HttpGet]
+      
+        public async Task<IActionResult> GetUsuarios()
         {
-            var origin = Request.Headers["origin"];
-            return Ok("test");
+            var result = await _service.GetData();
+            return Ok(result);
         }
 
 

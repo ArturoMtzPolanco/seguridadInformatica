@@ -14,8 +14,7 @@ namespace Infraestructure.Persistence
 
         }
 
-        public DbSet<BranchOffice> BranchOffice => Set<BranchOffice>();
-
+        public DbSet<users> users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
