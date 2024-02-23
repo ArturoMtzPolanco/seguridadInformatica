@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Interfaces;
+﻿using ApplicationCore.Commands.Users;
+using ApplicationCore.Interfaces;
 using ApplicationCore.Wrappers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -26,6 +27,14 @@ namespace Host.Controllers
         public async Task<IActionResult> GetUsuarios()
         {
             var result = await _service.GetData();
+            return Ok(result);
+        }
+
+
+        [HttpPost("create")]
+        public async Task<ActionResult<Response<int>>> Create (CreateUserCommand request)
+        {
+            var result = await _mediator.Send(request);
             return Ok(result);
         }
 
