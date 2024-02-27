@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Commands.Users;
+﻿using ApplicationCore.Commands.LogsR;
+using ApplicationCore.Commands.Users;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Wrappers;
 using MediatR;
@@ -32,7 +33,22 @@ namespace Host.Controllers
 
 
         [HttpPost("create")]
-        public async Task<ActionResult<Response<int>>> Create (CreateUserCommand request)
+        public async Task<ActionResult<Response<int>>> Create (CreateLogsCommand request)
+        {
+            var result = await _mediator.Send(request);
+            return Ok(result);
+        }
+
+
+        [HttpGet("ipGet")]
+        public async Task<IActionResult> GetIp()
+        {
+            var result = await (_service.GetIp());
+            return Ok(result);
+        }
+
+         [HttpPost("createlog")]
+        public async Task<ActionResult<Response<int>>> Createlog (CreateLogsCommand request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);

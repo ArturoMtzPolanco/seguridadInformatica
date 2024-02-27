@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ApplicationCore.DTOs.User;
+using ApplicationCore.DTOs.logs;
 
-namespace ApplicationCore.Commands.Users
+namespace ApplicationCore.Commands.LogsR
 {
-    public class CreateUsersCommand : UserDto, IRequest<Response<int>>
+    public class CreateLogsCommand :LogsDto, IRequest<Response<int>>
     {
 
     }

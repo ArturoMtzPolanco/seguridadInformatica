@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Commands.Users;
+﻿using ApplicationCore.Commands.LogsR;
+using ApplicationCore.Commands.Users;
 using ApplicationCore.Wrappers;
 using AutoMapper;
 using Infraestructure.Persistence;
@@ -9,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infraestructure.EventHandler.cs
+namespace Infraestructure.EventHandler
 {
-    public class CreateUserHandlers : IRequestHandler<CreateUserCommand, Response<int>>
+    public class CreateUserHandlers : IRequestHandler<CreateUsersCommand, Response<int>>
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -20,11 +21,11 @@ namespace Infraestructure.EventHandler.cs
             _context = context;
             _mapper = mapper;
         }
-        public async Task<Response<int>> Handle(CreateUserCommand reques, CancellationToken cancellationToken)
+        public async Task<Response<int>> Handle(CreateUsersCommand request, CancellationToken cancellationToken)
         {
-            var u = new CreateUserCommand();
-            u.Nombre = reques.Nombre;
-            u.Ap_paterno = reques.Ap_paterno;
+            var u = new CreateUsersCommand();
+            u.Nombre = request.Nombre;
+            u.Ap_paterno = request.Ap_paterno;
 
             var us = _mapper.Map<Domain.Entities.users>(u);
             await _context.users.AddAsync(us);

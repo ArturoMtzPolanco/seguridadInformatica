@@ -14,7 +14,10 @@ namespace Infraestructure.Persistence
 
         }
 
+
         public DbSet<users> users { get; set; }
+
+        public DbSet<logs> Logs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
